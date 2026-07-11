@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nutricao Feminina</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Camada Gold</p>
+          <h1>Nutricao Feminina</h1>
+          <p class="hero-copy">
+            Recomendacoes alimentares por fase do ciclo menstrual, geradas por uma pipeline de dados com Airflow, dbt e arquitetura medalhao.
+          </p>
+        </div>
+        <div class="hero-panel">
+          <span class="panel-label">Fonte</span>
+          <strong>gold_recomendacoes.csv</strong>
+          <span>Dados finais exportados do modelo dbt.</span>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Filtro de fase">
+        <label for="phaseSelect">Fase do ciclo</label>
+        <select id="phaseSelect"></select>
+      </section>
+
+      <section class="summary-grid" aria-label="Resumo da fase selecionada">
+        <article class="summary-card">
+          <span>Fase selecionada</span>
+          <strong id="selectedPhase">-</strong>
+          <p id="phaseDescription">-</p>
+        </article>
+        <article class="summary-card">
+          <span>Nutriente priorizado</span>
+          <strong id="selectedNutrient">-</strong>
+          <p>O ranking usa o maior valor do nutriente como criterio.</p>
+        </article>
+        <article class="summary-card">
+          <span>Principal recomendacao</span>
+          <strong id="topFood">-</strong>
+          <p>Alimento com maior pontuacao para a fase.</p>
+        </article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <h2>Top 3 recomendacoes</h2>
+          <p>Alimentos ranqueados pela regra nutricional da fase.</p>
+        </div>
+        <div id="cards" class="cards-grid"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <h2>Comparativo nutricional</h2>
+          <p>Valor do nutriente priorizado em miligramas.</p>
+        </div>
+        <div id="bars" class="bars"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <h2>Dados finais</h2>
+          <p>Registros da camada Gold usados na visualizacao.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ranking</th>
+                <th>Alimento</th>
+                <th>Nutriente</th>
+                <th>Valor mg</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

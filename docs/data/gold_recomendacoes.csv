@@ -1,0 +1,13 @@
+fase_ciclo,ranking,alimento,nutriente_prioritario,valor_nutriente,descricao
+Folicular,1,100g kale,calcio_mg,254.0,Apoio a saude ossea e metabolismo
+Folicular,2,100g spinach,calcio_mg,99.0,Apoio a saude ossea e metabolismo
+Folicular,3,2 eggs,calcio_mg,56.0,Apoio a saude ossea e metabolismo
+Lutea,1,100g pumpkin seeds,magnesio_mg,550.0,Apoio a sintomas comuns da fase lutea
+Lutea,2,100g spinach,magnesio_mg,79.0,Apoio a sintomas comuns da fase lutea
+Lutea,3,100g walnuts,magnesio_mg,158.0,Apoio a sintomas comuns da fase lutea
+Menstrual,1,100g spinach,ferro_mg,2.71,Apoio a reposicao de ferro
+Menstrual,2,100g red meat,ferro_mg,2.6,Apoio a reposicao de ferro
+Menstrual,3,100g lentils,ferro_mg,3.33,Apoio a reposicao de ferro
+Ovulatoria,1,100g pumpkin seeds,zinco_mg,7.64,Apoio a imunidade e equilibrio hormonal
+Ovulatoria,2,100g red meat,zinco_mg,4.8,Apoio a imunidade e equilibrio hormonal
+Ovulatoria,3,100g walnuts,zinco_mg,3.09,Apoio a imunidade e equilibrio hormonal
