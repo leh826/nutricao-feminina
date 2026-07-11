@@ -24,16 +24,6 @@ O projeto segue a arquitetura medalhao:
 - Silver: dados tratados, consolidados e salvos em formato Parquet.
 - Gold: dados refinados para consumo analitico, contendo sugestoes de alimentos por fase do ciclo menstrual.
 
-Fluxo previsto:
-
-```text
-API Edamam
-    -> Bronze
-    -> Silver
-    -> Gold
-    -> Recomendacoes alimentares
-```
-
 ## Fases do ciclo menstrual
 
 A camada Gold considera regras de negocio para sugerir alimentos com base em nutrientes associados a cada fase:
@@ -182,39 +172,13 @@ nutricao_feminina_medalhao
 
 Como a DAG esta com `schedule=None`, ela deve ser executada manualmente pela interface do Airflow.
 
-## Visualizacao
-
-O projeto possui uma aplicacao Streamlit em `app/streamlit_app.py` para visualizar as recomendacoes da camada Gold de forma mais amigavel.
-
-Ela apresenta:
-
-- Selecao da fase do ciclo menstrual.
-- Top 3 alimentos recomendados.
-- Nutriente priorizado para a fase.
-- Grafico comparativo dos alimentos.
-- Tabela final da camada Gold.
-
-Para subir a visualizacao:
-
-```bash
-docker compose up -d --build web
-```
-
-Acesse:
-
-```text
-http://localhost:8501
-```
-
-Antes de abrir o painel, execute a DAG `nutricao_feminina_medalhao` no Airflow para garantir que a camada Gold foi gerada.
-
 ## dbt
 
 O dbt sera utilizado para apoiar a governanca e as transformacoes entre as camadas Silver e Gold.
 
 Neste projeto, o dbt usa DuckDB como motor SQL leve para ler arquivos Parquet da camada Silver no MinIO e gerar a camada Gold. Essa escolha evita adicionar Spark neste momento e mantem a arquitetura mais simples para aprendizado.
 
-Estrutura inicial criada:
+Estrutura criada:
 
 ```text
 dbt_projeto/
@@ -228,7 +192,7 @@ dbt_projeto/
 `-- macros/
 ```
 
-O fluxo previsto com dbt e:
+O fluxo com dbt:
 
 ```text
 Silver Parquet no MinIO
@@ -257,7 +221,7 @@ O projeto usa arquivo `.env` para armazenar configuracoes de acesso, como:
 - Configuracoes do Airflow.
 - Configuracoes do pgAdmin.
 
-Exemplo de `.env` sem expor credenciais reais:
+Exemplo de `.env`:
 
 ```env
 # API Edamam
@@ -287,24 +251,3 @@ PROJECT_DB_PORT=5433
 PGADMIN_EMAIL=seu_email@exemplo.com
 PGADMIN_PASSWORD=sua_senha_pgadmin
 ```
-
-O arquivo `.env` real deve ficar apenas no ambiente local e nao deve ser versionado, pois contem credenciais e configuracoes sensiveis.
-
-## Status atual
-
-Ja foi iniciado:
-
-- Ambiente Docker com Airflow, MinIO, PostgreSQL, Redis e pgAdmin.
-- Infraestrutura Terraform para os buckets Bronze, Silver e Gold.
-- Scripts Python para Bronze, Silver e Gold.
-- Estrutura inicial de pastas para Airflow, dbt, scripts, dados e plugins.
-- Projeto dbt com modelos staging, intermediate e marts.
-- DAG do Airflow para orquestrar Bronze, Silver, dbt run, dbt test e exportacao da Gold.
-- Aplicacao Streamlit para visualizar as recomendacoes da camada Gold.
-
-Ainda falta:
-
-- Definir melhor as regras de negocio das recomendacoes.
-- Adicionar testes e validacoes de dados.
-- Melhorar tratamento de erros e logs dos scripts.
-- Organizar arquivos sensiveis e evitar versionar `.env`, `venv`, logs e state local.
