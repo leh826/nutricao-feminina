@@ -1,0 +1,1 @@
+set s3_access_key_id='admin'

@@ -1,0 +1,1 @@
+set s3_region='us-east-1'

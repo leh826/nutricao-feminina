@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_nutricao_alimentos
+    description: "Dados nutricionais tratados a partir da camada Silver."
+    columns:
+      - name: alimento
+        description: "Nome do alimento analisado."
+        tests:
+          - not_null
+          - unique
+
+      - name: magnesio_mg
+        description: "Quantidade de magnesio em miligramas."
+        tests:
+          - not_null
+
+      - name: ferro_mg
+        description: "Quantidade de ferro em miligramas."
+        tests:
+          - not_null
+
+      - name: zinco_mg
+        description: "Quantidade de zinco em miligramas."
+        tests:
+          - not_null
+
+      - name: calcio_mg
+        description: "Quantidade de calcio em miligramas."
+        tests:
+          - not_null
+
+  - name: stg_fases_ciclo
+    description: "Regras de negocio que relacionam cada fase do ciclo menstrual a um nutriente prioritario."
+    columns:
+      - name: fase_ciclo
+        description: "Fase do ciclo menstrual."
+        tests:
+          - not_null
+          - unique
+
+      - name: nutriente_prioritario
+        description: "Nutriente usado para ranquear os alimentos recomendados."
+        tests:
+          - not_null
+
+      - name: descricao
+        description: "Descricao da regra de recomendacao."
+        tests:
+          - not_null

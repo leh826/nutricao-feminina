@@ -1,0 +1,1 @@
+set s3_secret_access_key='admin826'

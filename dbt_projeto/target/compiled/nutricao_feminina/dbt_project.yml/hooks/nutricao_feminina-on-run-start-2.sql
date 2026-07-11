@@ -1,0 +1,1 @@
+create or replace secret minio_secret (type s3, key_id 'admin', secret 'admin826', endpoint 'minio:9000', region 'us-east-1', use_ssl false, url_style 'path')

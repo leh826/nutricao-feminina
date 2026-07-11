@@ -1,0 +1,32 @@
+name: nutricao_feminina
+version: "1.0.0"
+config-version: 2
+
+profile: nutricao_feminina
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  silver_parquet_path: "s3://projeto-nutricao-feminina-silver/nutricao/alimentos_tratados/catalogo_nutricional_consolidado.parquet"
+  gold_parquet_path: "s3://projeto-nutricao-feminina-gold/recomendacoes/ciclo_menstrual/recomendacoes_top3.parquet"
+
+on-run-start:
+  - "install httpfs"
+  - "load httpfs"
+  - "create or replace secret minio_secret (type s3, key_id '{{ env_var(\"MINIO_ACCESS_KEY\") }}', secret '{{ env_var(\"MINIO_SECRET_KEY\") }}', endpoint '{{ env_var(\"MINIO_DBT_ENDPOINT\", \"minio:9000\") }}', region 'us-east-1', use_ssl false, url_style 'path')"
+
+models:
+  nutricao_feminina:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
