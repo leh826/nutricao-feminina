@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: gold_recomendacoes_ciclo
+    description: "Camada Gold com top 3 alimentos recomendados por fase do ciclo menstrual."
+    columns:
+      - name: fase_ciclo
+        tests:
+          - not_null
+
+      - name: ranking
+        tests:
+          - not_null
+
+      - name: alimento
+        tests:
+          - not_null
+
+      - name: nutriente_prioritario
+        tests:
+          - not_null
+
+      - name: valor_nutriente
+        tests:
+          - not_null

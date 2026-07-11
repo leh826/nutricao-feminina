@@ -1,0 +1,1 @@
+set s3_use_ssl=false

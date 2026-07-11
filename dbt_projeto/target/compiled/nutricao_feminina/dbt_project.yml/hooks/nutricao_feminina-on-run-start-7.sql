@@ -1,0 +1,1 @@
+set s3_url_style='path'

@@ -1,0 +1,7 @@
+nutricao_feminina:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "/opt/airflow/dbt_projeto/nutricao_feminina.duckdb"
+      threads: 1
