@@ -1,0 +1,12 @@
+FROM apache/airflow:3.1.7
+
+USER airflow
+
+RUN pip install \
+    dbt-core \
+    dbt-postgres \
+    dbt-duckdb \
+    boto3 \
+    pandas \
+    pyarrow \
+    python-dotenv
